@@ -12,14 +12,10 @@ roman = {
 
 def arabic_to_roman(arabic):
     if(arabic <= 0): return ''
-    if arabic in roman :
-        return roman[arabic]
-    elif (arabic+1 in roman) :
-        return f'I{roman[arabic+1]}'
-    else :
-        for a, r in reversed(roman.items()):
-            if(a <= arabic): 
-                return f'{r}{arabic_to_roman(arabic - a)}'
+    if arabic in roman : return roman[arabic]
+    if (arabic+1 in roman) : return f'I{roman[arabic+1]}'
+    for a, r in reversed(roman.items()):
+        if(a <= arabic): return f'{r}{arabic_to_roman(arabic - a)}'
         
 
 print(f'1 -> {arabic_to_roman(1)}')
