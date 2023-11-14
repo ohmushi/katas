@@ -20,9 +20,7 @@ def arabic_to_roman(arabic):
         for a, r in reversed(roman.items()):
             if(a <= arabic): 
                 return f'{r}{arabic_to_roman(arabic - a)}'
-            
-
-
+        
 
 print(f'1 -> {arabic_to_roman(1)}')
 print(f'3 -> {arabic_to_roman(3)}')
