@@ -10,25 +10,25 @@
 def number_contains_digit(x, n, res):
     return res if str(n) in str(x) else ''
 
+
 def number_is_divided_by_n(x, n, res):
     return res if x % n == 0 else ''
 
-def fizzbuzz_of(n, rules):
-    res = ''
-
-    for rule in rules:
-        res += rule(n)
-
-    return n if res == '' else res
 
 
 def fizzbuzz():
-    rules = [
-        lambda number: number_contains_digit(number, 3, 'Fizz'),
-        lambda number: number_is_divided_by_n(number, 3, 'Fizz'),
-        lambda number: number_contains_digit(number, 5, 'Buzz'),
-        lambda number: number_is_divided_by_n(number, 5, 'Buzz'),
-    ]
+    rules = {
+        'contains_3': lambda number: number_contains_digit(number, 3, 'Fizz'),
+        'divided_by_3': lambda number: number_is_divided_by_n(number, 3, 'Fizz'),
+        'contains_5': lambda number: number_contains_digit(number, 5, 'Buzz'),
+        'divided_by_5': lambda number: number_is_divided_by_n(number, 5, 'Buzz'),
+    }
+
+    def fizzbuzz_of(n, rules):
+        res = ''
+        for rule in rules.values(): res += rule(n)
+        return n if res == '' else res
+
     for i in range(1, 101):
         print(fizzbuzz_of(i, rules))
 
