@@ -5,20 +5,40 @@
 # number and for the multiples of five print “Buzz”.
 # For numbers which are multiples of both three and five print “FizzBuzz “.
 
-def fizzbuzz_of(n):
+def contains_3(n):
+    return 'Fizz' if '3' in str(n) else ''
+
+
+def contains_5(n):
+    return 'Buzz' if '5' in str(n) else ''
+
+
+def divided_by_3(n):
+    return 'Fizz' if n % 3 == 0 else ''
+
+
+def divided_by_5(n):
+    return 'Buzz' if n % 5 == 0 else ''
+
+
+def fizzbuzz_of(n, rules):
     res = ''
 
-    if '3' in str(n): res += 'Fizz'
-    if '5' in str(n): res += 'Buzz'
-    if n % 3 == 0: res += 'Fizz'
-    if n % 5 == 0: res += 'Buzz'
+    for rule in rules:
+        res += rule(n)
 
     return n if res == '' else res
 
 
 def fizzbuzz():
+    rules = [
+        contains_3,
+        contains_5,
+        divided_by_3,
+        divided_by_5
+    ]
     for i in range(1, 101):
-        print(fizzbuzz_of(i))
+        print(fizzbuzz_of(i, rules))
 
 
 fizzbuzz()
