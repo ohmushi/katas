@@ -1,25 +1,17 @@
 # https://codingdojo.org/kata/FizzBuzz/
 
+
 # Write a program that prints the numbers from 1 to 100.
 # But for multiples of three print “Fizz” instead of the
 # number and for the multiples of five print “Buzz”.
 # For numbers which are multiples of both three and five print “FizzBuzz “.
 
-def contains_3(n):
-    return 'Fizz' if '3' in str(n) else ''
 
+def number_contains_digit(x, n, res):
+    return res if str(n) in str(x) else ''
 
-def contains_5(n):
-    return 'Buzz' if '5' in str(n) else ''
-
-
-def divided_by_3(n):
-    return 'Fizz' if n % 3 == 0 else ''
-
-
-def divided_by_5(n):
-    return 'Buzz' if n % 5 == 0 else ''
-
+def number_is_divided_by_n(x, n, res):
+    return res if x % n == 0 else ''
 
 def fizzbuzz_of(n, rules):
     res = ''
@@ -32,10 +24,10 @@ def fizzbuzz_of(n, rules):
 
 def fizzbuzz():
     rules = [
-        contains_3,
-        contains_5,
-        divided_by_3,
-        divided_by_5
+        lambda number: number_contains_digit(number, 3, 'Fizz'),
+        lambda number: number_is_divided_by_n(number, 3, 'Fizz'),
+        lambda number: number_contains_digit(number, 5, 'Buzz'),
+        lambda number: number_is_divided_by_n(number, 5, 'Buzz'),
     ]
     for i in range(1, 101):
         print(fizzbuzz_of(i, rules))
