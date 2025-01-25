@@ -15,7 +15,6 @@ def number_is_divided_by_n(x, n, res):
     return res if x % n == 0 else ''
 
 
-
 def fizzbuzz():
     rules = {
         'contains_3': lambda number: number_contains_digit(number, 3, 'Fizz'),
