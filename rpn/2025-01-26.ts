@@ -4,28 +4,31 @@
 
 
 function rpn(str: string): number {
-    function eval(operator: string, b: number, a: number): number {
-        console.log(`eval ${a} ${operator} ${b}`);
+    function operator(op: string) {
+        function _eval(fn : (a: number, b: number) => number) {
+            return {eval: (a: number, b: number) => fn(a,b)}
+        }
         
-        switch (operator) {
-            case '/': return a / b;
-            case '+': return a + b;
-            case '-': return a - b;
+        switch (op) {
+            case '/': return _eval((b: number, a: number) => a / b);
+            case '+': return _eval((b: number, a: number) => a + b);
+            case '-': return _eval((b: number, a: number) => a - b);
             default: throw new Error(`Unexpected operator '${operator}'`);
         }
     }
 
     function _rpn(stack: string[]): number {
         if(stack.length < 3) throw new Error(`Unvalid input ${stack.toString()}`)
-        if(stack.length === 3) return eval(stack.pop()!, +stack.pop()!, +stack.pop()!);
-        else return eval(stack.pop()!, +stack.pop()!, _rpn(stack));
+        if(stack.length === 3) return operator(stack.pop()!).eval(+stack.pop()!, +stack.pop()!);
+        else return operator(stack.pop()!).eval(+stack.pop()!, _rpn(stack));
     }
     
     return _rpn(str.split(' '));
 }
 
 function assert_actual_equals_expected(actual: number, expected: number): void {
-    console.assert(actual === expected, `expected [${expected}] but got [${expected}]`);
+    
+    console.assert(actual === expected, `expected [${expected}] but got [${actual}]`);
 }
 
 assert_actual_equals_expected(rpn('20 5 /'), 4);
