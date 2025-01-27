@@ -4,18 +4,19 @@
 
 namespace RPN {
     interface Operator {
-        eval(a: number, b: number): number;
+        (b: number, a: number): number;
     }
 
     const operators = new Map<string, Operator>([
-        ['/', {eval: (b, a) => a / b}],
-        ['+', {eval: (b, a) => a + b}],
-        ['-', {eval: (b, a) => a - b}],
+        ['/', (b, a) => a / b],
+        ['+', (b, a) => a + b],
+        ['-', (b, a) => a - b],
     ]);
     
-    function operator(op: string): Operator {
-        return operators.get(op) 
-                ?? {eval: () => {throw new Error(`Unexpected operator [${op}].`)}};
+    function operator(op: string): {eval: Operator} {
+        return operators.has(op) 
+                    ? {eval: operators.get(op)!}
+                    : {eval: () => {throw new Error(`Unexpected operator [${op}].`)}};
     }
 
     export function of_string(str: string): number {
@@ -32,7 +33,6 @@ namespace RPN {
 
 
 function assert_actual_equals_expected(actual: number, expected: number): void {
-    
     console.assert(actual === expected, `expected [${expected}] but got [${actual}]`);
 }
 
