@@ -1,0 +1,20 @@
+{
+  "name": "2025-02-15",
+  "version": "1.0.0",
+  "description": "Kata for shodo.io job interview",
+  "private": true,
+  "main": "src/shodo.ts",
+  "scripts": {
+    "start": "tsc && node dist/shodo.js",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest watch"
+  },
+  "author": "ohmushi",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}
