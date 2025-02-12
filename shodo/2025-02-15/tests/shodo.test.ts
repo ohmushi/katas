@@ -21,8 +21,8 @@ test('one letter syllabe', () => {
 })
 
 
-test('unknown input should be empty', () => {
-    expect(translate('z')).toBe('');
+test('unknown syllabe should thow error', () => {
+    expect(() => translate('z')).toThrow('Unknown syllabe for "z"');
 })
 
 test('ka should be か', () => {

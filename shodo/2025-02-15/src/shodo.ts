@@ -21,20 +21,19 @@ const syllabe_to_kana: {[syllabe:string]: string} = {
 }
 
 export function translate(x: string): string {
-    function find_next_syllable(s: string): string | null {
-        while(s.length > 0) {
-            for(let syllabe in syllabe_to_kana) {      
-                if(s.startsWith(syllabe)) return syllabe;
-            }
-            s = s.substring(1);
+    function find_next_syllable_in(s: string): string | null {
+        if(!s) return null;
+        for(let syllabe in syllabe_to_kana) {      
+            if(s.startsWith(syllabe)) 
+                return syllabe;
         }
-        return null;
+        throw new Error(`Unknown syllabe for "${s}"`);
     }
 
     let translated = '';
     x = x.toLowerCase();
     let syllabe = '';
-    while(syllabe = find_next_syllable(x)) {
+    while(syllabe = find_next_syllable_in(x)) {
         translated += syllabe_to_kana[syllabe];
         x = x.substring(syllabe.length);
     }
