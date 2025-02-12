@@ -2,10 +2,15 @@
 
 ## Start
 
-run 
 ```bash
 npm i
 npm start 
+```
+
+### Test
+See the tests in `tests/shodo.test.ts`
+```bash
+npm run test
 ```
 
 ## Problem Description

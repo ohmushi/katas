@@ -22,25 +22,22 @@ const syllabe_to_kana: {[syllabe:string]: string} = {
 
 export function translate(x: string): string {
     function find_next_syllable(s: string): string | null {
-        for(let syllabe in syllabe_to_kana) {      
-            if(s.startsWith(syllabe)) return syllabe;
+        while(s.length > 0) {
+            for(let syllabe in syllabe_to_kana) {      
+                if(s.startsWith(syllabe)) return syllabe;
+            }
+            s = s.substring(1);
         }
         return null;
     }
 
     let translated = '';
     x = x.toLowerCase();
-    while(x.length > 0) {
-        const syllabe = find_next_syllable(x);
-        if(!syllabe) {
-            x = x.substring(1);
-            continue;
-        }
-        const kana = syllabe_to_kana[syllabe];
-        translated += kana;
+    let syllabe = '';
+    while(syllabe = find_next_syllable(x)) {
+        translated += syllabe_to_kana[syllabe];
         x = x.substring(syllabe.length);
     }
-    
     return translated;
 }
 
