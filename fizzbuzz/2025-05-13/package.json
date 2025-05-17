@@ -7,11 +7,13 @@
   "scripts": {
     "start": "tsc && node dist/fizzbuzz.js",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:mutation": "stryker run"
   },
   "author": "ohmushi",
   "license": "ISC",
   "devDependencies": {
+    "@stryker-mutator/vitest-runner": "^9.0.1",
     "@types/node": "^22.13.1",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
