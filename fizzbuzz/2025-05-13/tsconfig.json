@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "es2024",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "types": [
+      "node"
+    ],
+    "strict": true
+  },
+  "lib": [
+    "es2015"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}
